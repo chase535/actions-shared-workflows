@@ -440,9 +440,9 @@ jobs:
         working-directory: openwrt
         run: |
           ./scripts/feeds update -a
-          ./scripts/feeds install libgcrypt libev libpam liblzma libnetsnmp unetmsg
+          ./scripts/feeds install libgcrypt libev libpam liblzma libnetsnmp
           ./scripts/feeds install -a
-          ./scripts/feeds uninstall luci-app-bypass luci-app-ssr-plus shadow
+          ./scripts/feeds uninstall luci-app-bypass luci-app-ssr-plus ufp
 
       - name: Restore ccache cache
         id: restore-ccache-cache
