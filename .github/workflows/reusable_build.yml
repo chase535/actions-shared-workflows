@@ -21,20 +21,28 @@ on:
         type: boolean
       build_toolchain:
         type: boolean
+        default: true
       include_feeds:
         type: boolean
+        default: true
       build_full:
         type: boolean
+        default: true
       build_kernel:
         type: boolean
+        default: true
       build_all_modules:
         type: boolean
+        default: true
       build_all_kmods:
         type: boolean
+        default: true
       build_dtb:
         type: boolean
+        default: true
       build_all_boards:
         type: boolean
+        default: true
       use_openwrt_container:
         type: boolean
         default: true
@@ -57,8 +65,10 @@ on:
           openssl
       build_external_toolchain:
         type: boolean
+        default: true
       upload_external_toolchain:
         type: boolean
+        default: true
       use_ccache_cache:
         type: boolean
         default: true
@@ -67,6 +77,7 @@ on:
         default: kernel
       upload_ccache_cache:
         type: boolean
+        default: true
       check:
         type: boolean
         default: true
