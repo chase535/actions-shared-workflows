@@ -431,7 +431,7 @@ jobs:
         working-directory: openwrt
         run: |
           ./scripts/feeds update -a
-          ./scripts/feeds install libgcrypt-compat libev libpam liblzma libnetsnmp
+          ./scripts/feeds install libgcrypt libev libpam liblzma libnetsnmp
           # ./scripts/feeds install -a
 
       - name: Modify files
@@ -440,7 +440,7 @@ jobs:
         run: |
           for file in $(find ./package/feeds -type f -name "Makefile"); do
             echo ${file}
-            sed -i "s/libcrypt-compat/libgcrypt-compat/g" ${file}
+            sed -i "s/libcrypt-compat/libgcrypt/g" ${file}
           done
 
       - name: Restore ccache cache
