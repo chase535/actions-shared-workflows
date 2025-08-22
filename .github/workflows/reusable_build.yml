@@ -312,6 +312,13 @@ jobs:
         with:
           repository: openwrt/telephony
           path: openwrt/feeds/telephony
+          
+      - name: Install dependency
+        if: inputs.build_toolchain == false
+        run: |
+          ./scripts/feeds update -a
+          ./scripts/feeds install -a
+          ./scripts/feeds install libev libpam liblzma libnetsnmp 
 
       - name: Parse toolchain path
         if: inputs.build_toolchain == false
