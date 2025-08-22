@@ -431,8 +431,16 @@ jobs:
         working-directory: openwrt
         run: |
           ./scripts/feeds update -a
-          ./scripts/feeds install libev libpam liblzma libnetsnmp
+          ./scripts/feeds install libxcrypt-compat libev libpam liblzma libnetsnmp
           # ./scripts/feeds install -a
+
+      - name: Modify files
+        shell: su buildbot -c "sh -e {0}"
+        working-directory: openwrt
+        run: |
+          for file in $(find ./package/feeds -type f -name "Makefile"); do
+            sed -i "s/libcrypt-compat/libxcrypt-compat/g"
+          done
 
       - name: Restore ccache cache
         id: restore-ccache-cache
@@ -644,6 +652,7 @@ jobs:
         shell: su buildbot -c "sh -e {0}"
         working-directory: openwrt
         run: ./scripts/diffconfig.sh
+
 
       - name: Build everything
         if: inputs.build_full == true
