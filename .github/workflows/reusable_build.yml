@@ -422,6 +422,7 @@ jobs:
           for file in $(find ./feeds -type f -name "Makefile"); do
             echo ${file}
             sed -i "s/libcrypt-compat/libgcrypt/g" ${file}
+            sed -i "s/libxcrypt/libgcrypt/g" ${file}
           done
 
       - name: Prepare prebuilt tools
@@ -440,7 +441,7 @@ jobs:
         working-directory: openwrt
         run: |
           ./scripts/feeds update -a
-          ./scripts/feeds install libgcrypt libev libpam liblzma libnetsnmp
+          ./scripts/feeds install libgcrypt libev libpam liblzma libnetsnmp dns2socks-rust shadowsocks-libev-ss-server shadowsocks-libev-ss-local shadowsocks-libev-ss-redir
           # ./scripts/feeds install -a
 
       - name: Restore ccache cache
