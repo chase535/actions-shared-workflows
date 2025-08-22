@@ -431,8 +431,8 @@ jobs:
         working-directory: openwrt
         run: |
           ./scripts/feeds update -a
+          ./scripts/feeds install libev libpam liblzma libnetsnmp libxcrypt libcrypt-compat
           ./scripts/feeds install -a
-          ./scripts/feeds install libev libpam liblzma libnetsnmp 
 
       - name: Restore ccache cache
         id: restore-ccache-cache
