@@ -645,6 +645,12 @@ jobs:
         working-directory: openwrt
         run: ./scripts/diffconfig.sh
 
+      - name: Build everything
+        if: inputs.build_full == true
+        shell: su buildbot -c "sh -e {0}"
+        working-directory: openwrt
+        run: make -j$(nproc) BUILD_LOG=1 || ret=$? .github/workflows/scripts/show_build_failures.sh
+
       - name: Build tools
         shell: su buildbot -c "sh -e {0}"
         working-directory: openwrt
@@ -679,12 +685,6 @@ jobs:
           [ $ret = 2 ] && exit 0
 
           make target/linux/dtb -j$(nproc) BUILD_LOG=1 || ret=$? .github/workflows/scripts/show_build_failures.sh
-
-      - name: Build everything
-        if: inputs.build_full == true
-        shell: su buildbot -c "sh -e {0}"
-        working-directory: openwrt
-        run: make -j$(nproc) BUILD_LOG=1 || ret=$? .github/workflows/scripts/show_build_failures.sh
 
       - name: Build external toolchain
         if: inputs.build_external_toolchain == true
