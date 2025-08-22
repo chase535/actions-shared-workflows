@@ -438,7 +438,8 @@ jobs:
         shell: su buildbot -c "sh -e {0}"
         working-directory: openwrt
         run: |
-          for file in $(find ./package/feeds -type f -name "Makefile"); do
+          ls -l
+          for file in $(find ./package/feeds -type f); do
             echo ${file}
             sed -i "s/libcrypt-compat/libgcrypt/g" ${file}
           done
