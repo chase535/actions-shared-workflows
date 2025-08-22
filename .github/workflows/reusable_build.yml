@@ -420,7 +420,6 @@ jobs:
         working-directory: openwrt
         run: |
           for file in $(find ./feeds -type f -name "Makefile"); do
-            echo ${file}
             sed -i "s/libcrypt-compat/libgcrypt/g" ${file}
             sed -i "s/libxcrypt/libgcrypt/g" ${file}
           done
@@ -441,8 +440,9 @@ jobs:
         working-directory: openwrt
         run: |
           ./scripts/feeds update -a
-          ./scripts/feeds install libgcrypt libev libpam liblzma libnetsnmp dns2socks-rust shadowsocks-libev-ss-server shadowsocks-libev-ss-local shadowsocks-libev-ss-redir
-          # ./scripts/feeds install -a
+          ./scripts/feeds install libgcrypt libev libpam liblzma libnetsnmp unetmsg
+          ./scripts/feeds install -a
+          ./scripts/feeds uninstall luci-app-bypass luci-app-ssr-plus shadow
 
       - name: Restore ccache cache
         id: restore-ccache-cache
