@@ -324,6 +324,15 @@ jobs:
           repository: openwrt/telephony
           path: openwrt/feeds/telephony
 
+      - name: Modify files
+        shell: su buildbot -c "sh -e {0}"
+        working-directory: openwrt
+        run: |
+          for file in $(find ./feeds -type f -name "Makefile"); do
+            echo ${file}
+            sed -i "s/libcrypt-compat/libgcrypt/g" ${file}
+          done
+
       - name: Parse toolchain path
         if: inputs.build_toolchain == false
         working-directory: openwrt
@@ -644,16 +653,6 @@ jobs:
         shell: su buildbot -c "sh -e {0}"
         working-directory: openwrt
         run: ./scripts/diffconfig.sh
-
-      - name: Modify files
-        shell: su buildbot -c "sh -e {0}"
-        working-directory: openwrt
-        run: |
-          find package
-          for file in $(find ./package/feeds -type f -name "Makefile"); do
-            echo ${file}
-            sed -i "s/libcrypt-compat/libgcrypt/g" ${file}
-          done
 
       - name: Build everything
         if: inputs.build_full == true
