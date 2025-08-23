@@ -30,19 +30,19 @@ on:
         default: true
       build_kernel:
         type: boolean
-        default: true
+        default: false
       build_all_modules:
         type: boolean
-        default: true
+        default: false
       build_all_kmods:
         type: boolean
-        default: true
+        default: false
       build_dtb:
         type: boolean
-        default: true
+        default: false
       build_all_boards:
         type: boolean
-        default: true
+        default: false
       use_openwrt_container:
         type: boolean
         default: true
@@ -65,10 +65,10 @@ on:
           openssl
       build_external_toolchain:
         type: boolean
-        default: true
+        default: false
       upload_external_toolchain:
         type: boolean
-        default: true
+        default: false
       use_ccache_cache:
         type: boolean
         default: true
