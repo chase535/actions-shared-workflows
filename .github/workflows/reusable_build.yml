@@ -815,3 +815,17 @@ jobs:
           name: ${{ inputs.target }}-${{ inputs.subtarget }}-external-toolchain
           path: openwrt/bin/targets/${{ inputs.target }}/${{ inputs.subtarget }}/${{ steps.get-toolchain-name.outputs.toolchain-name }}
           retention-days: 1
+
+      - name: Upload bin to artifacts
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bin-${{ inputs.target }}-${{ inputs.subtarget }}
+          path: openwrt/bin/*
+
+      - name: Upload dl to artifacts
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dl-${{ inputs.target }}-${{ inputs.subtarget }}
+          path: openwrt/dl/*
