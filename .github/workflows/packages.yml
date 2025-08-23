@@ -56,10 +56,8 @@ jobs:
        fail-fast: False
        matrix:
         include:
-          - target: malta
-            subtarget: be
-          - target: x86
-            subtarget: 64
+          - target: qualcommax
+            subtarget: ipq50xx
     secrets:
       s3_endpoint: ${{ secrets.ccache_s3_endpoint }}
       s3_bucket: ${{ secrets.ccache_s3_bucket }}
