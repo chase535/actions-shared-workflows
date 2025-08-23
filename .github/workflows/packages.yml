@@ -31,10 +31,8 @@ jobs:
       fail-fast: False
       matrix:
         include:
-          - target: malta
-            subtarget: be
-          - target: x86
-            subtarget: 64
+          - target: qualcommax
+            subtarget: ipq50xx
     uses: ./.github/workflows/reusable_build.yml
     with:
       container_name: toolchain
